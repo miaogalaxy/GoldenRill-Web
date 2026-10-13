@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>方案 C · 专业网格 — Golden Rill Prime Future</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231b3a6b'/%3E%3Ctext x='16' y='22' font-size='14' fill='%23fff' text-anchor='middle' font-family='Georgia'%3EG%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&display=swap">
+<style>
+  :root{
+    --ink:#16233a;
+    --gray:#5a6a84;
+    --light:#8b97ab;
+    --faint:#eef1f6;
+    --paper:#ffffff;
+    --bg:#f7f9fc;
+    --accent:#1b3a6b;
+    --accent2:#3d6fb4;
+    --line:#e3e8f0;
+    --serif:"Noto Serif SC","Songti SC","SimSun",serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--serif);color:var(--ink);background:var(--paper);
+    line-height:1.8;-webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--accent);color:#fff;}
+
+  /* ===== 顶栏 ===== */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(255,255,255,.95);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    max-width:1240px;margin:0 auto;padding:0 40px;
+    display:flex;align-items:center;justify-content:space-between;height:72px;
+  }
+  .brand{font-size:17px;font-weight:600;letter-spacing:.5px;text-decoration:none;color:var(--ink);}
+  .brand .dot{color:var(--accent2);}
+  .nav-links{display:flex;gap:28px;align-items:center;}
+  .nav-links a{
+    font-size:14px;color:var(--gray);text-decoration:none;font-weight:500;
+    transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--accent);}
+  .nav-links a.on{color:var(--accent);}
+  .nav-links .btn{
+    background:var(--accent);color:#fff;padding:10px 24px;border-radius:6px;
+    transition:background .2s;
+  }
+  .nav-links .btn:hover{background:var(--accent2);color:#fff;}
+
+  main{max-width:1240px;margin:0 auto;padding:0 40px;}
+
+  /* ===== 首屏 ===== */
+  .hero{
+    min-height:88vh;display:flex;flex-direction:column;justify-content:center;
+    padding:150px 0 80px;
+  }
+  .hero .crumb{
+    font-size:12px;letter-spacing:3px;color:var(--accent2);margin-bottom:32px;text-transform:uppercase;
+  }
+  .hero h1{
+    font-size:clamp(42px,6vw,68px);font-weight:700;line-height:1.25;letter-spacing:.5px;
+    max-width:14em;color:var(--ink);
+  }
+  .hero h1 .thin{font-weight:300;color:var(--gray);}
+  .hero .sub{margin-top:36px;font-size:17px;color:var(--gray);max-width:34em;}
+  .hero .cta-row{margin-top:56px;display:flex;gap:16px;align-items:center;}
+  .hero .cta{
+    display:inline-block;background:var(--accent);color:#fff;
+    padding:15px 36px;font-size:14px;font-weight:600;letter-spacing:1px;
+    text-decoration:none;border-radius:6px;transition:all .2s;
+  }
+  .hero .cta:hover{background:var(--accent2);box-shadow:0 8px 24px rgba(27,58,107,.25);transform:translateY(-1px);}
+  .hero .ghost{
+    display:inline-block;border:1px solid var(--line);color:var(--accent);
+    padding:15px 36px;font-size:14px;font-weight:500;letter-spacing:1px;
+    text-decoration:none;border-radius:6px;transition:all .2s;
+  }
+  .hero .ghost:hover{border-color:var(--accent);background:var(--faint);}
+
+  /* ===== 区块通用 ===== */
+  section{padding:120px 0;border-top:1px solid var(--line);}
+  .sec-head{margin-bottom:64px;}
+  .sec-no{font-size:12px;letter-spacing:3px;color:var(--accent2);margin-bottom:14px;text-transform:uppercase;}
+  .sec-title{font-size:clamp(28px,3.4vw,38px);font-weight:700;letter-spacing:.5px;}
+  .sec-desc{font-size:15px;color:var(--gray);max-width:42em;margin-top:12px;}
+
+  /* ===== 基金方向 ===== */
+  .directions{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .direction{
+    border:1px solid var(--line);border-radius:10px;padding:36px 28px;
+    background:var(--paper);transition:all .25s;
+  }
+  .direction:hover{border-color:var(--accent2);box-shadow:0 8px 28px rgba(27,58,107,.08);transform:translateY(-3px);}
+  .direction .idx{
+    width:36px;height:36px;border-radius:50%;background:var(--faint);color:var(--accent);
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:600;margin-bottom:24px;
+  }
+  .direction h3{font-size:18px;font-weight:600;line-height:1.55;}
+
+  /* ===== 核心业务 ===== */
+  .biz-list{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .biz-card{
+    border:1px solid var(--line);border-radius:10px;padding:40px 36px;background:var(--paper);
+    transition:all .25s;
+  }
+  .biz-card:hover{border-color:var(--accent2);box-shadow:0 8px 28px rgba(27,58,107,.08);}
+  .biz-no{font-size:13px;font-weight:700;color:var(--accent2);letter-spacing:2px;margin-bottom:18px;}
+  .biz-card h3{font-size:20px;font-weight:600;margin-bottom:12px;}
+  .biz-card p{font-size:14px;color:var(--gray);line-height:1.9;}
+
+  /* ===== 关于我们 ===== */
+  .about-wrap{max-width:760px;}
+  .about-wrap .lead{font-size:20px;line-height:2;color:#24344f;}
+  .philosophy{
+    margin-top:72px;display:grid;grid-template-columns:repeat(2,1fr);gap:20px;
+  }
+  .ph-item{
+    border:1px solid var(--line);border-radius:10px;padding:32px 28px;background:var(--bg);
+    transition:all .25s;
+  }
+  .ph-item:hover{border-color:var(--accent2);}
+  .ph-item .no{font-size:11px;letter-spacing:2px;color:var(--accent2);margin-bottom:16px;font-weight:600;}
+  .ph-item h3{font-size:17px;font-weight:600;margin-bottom:8px;}
+  .ph-item p{font-size:13.5px;color:var(--gray);line-height:1.9;}
+  .mission{
+    margin-top:80px;background:var(--accent);border-radius:14px;padding:64px 56px;
+  }
+  .mission blockquote{
+    font-size:clamp(22px,2.8vw,30px);font-weight:400;line-height:1.7;color:#fff;max-width:26em;
+  }
+  .mission .rule{width:44px;height:2px;background:rgba(255,255,255,.5);margin-bottom:32px;}
+
+  /* ===== 投资组合 ===== */
+  .port-note{font-size:15px;color:var(--gray);max-width:42em;margin-bottom:48px;}
+  .logo-wall{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+  .logo-cell{
+    aspect-ratio:1;border:1px solid var(--line);border-radius:10px;background:var(--bg);
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;color:var(--light);letter-spacing:1px;
+    transition:all .25s;cursor:pointer;
+  }
+  .logo-cell:hover{border-color:var(--accent2);color:var(--accent);box-shadow:0 6px 20px rgba(27,58,107,.1);transform:translateY(-2px);}
+  .port-empty{margin-top:28px;font-size:13px;color:var(--light);letter-spacing:2px;}
+
+  /* ===== 新闻 ===== */
+  .tabs{display:flex;gap:32px;border-bottom:1px solid var(--line);margin-bottom:48px;}
+  .tab{
+    padding-bottom:14px;font-size:14px;color:var(--gray);cursor:pointer;position:relative;font-weight:500;
+    transition:color .2s;
+  }
+  .tab:hover{color:var(--accent);}
+  .tab.on{color:var(--accent);font-weight:600;}
+  .tab.on::after{
+    content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--accent2);
+  }
+  .news-list{max-width:820px;}
+  .news-row{
+    display:grid;grid-template-columns:140px 1fr;gap:32px;
+    padding:32px 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit;
+  }
+  .news-row .date{font-size:13px;color:var(--light);}
+  .news-row h3{font-size:18px;font-weight:600;margin-bottom:6px;transition:color .2s;}
+  .news-row p{font-size:14px;color:var(--gray);}
+  .news-row:hover h3{color:var(--accent2);}
+  .news-empty{font-size:14px;color:var(--light);padding:28px 0;}
+
+  /* ===== 联系 ===== */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;max-width:960px;}
+  .contact-line{padding:18px 0;border-bottom:1px solid var(--line);font-size:15px;}
+  .contact-line span{color:var(--light);margin-right:24px;font-size:12px;letter-spacing:2px;}
+  .map-holder{
+    border:1px solid var(--line);border-radius:10px;min-height:220px;background:var(--bg);
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;color:var(--light);letter-spacing:2px;
+  }
+  .sg-addr{padding-top:28px;font-size:13px;color:var(--light);letter-spacing:2px;}
+
+  /* ===== 页脚 ===== */
+  footer{border-top:1px solid var(--line);background:var(--bg);padding:64px 0 72px;}
+  .footer-inner{max-width:1240px;margin:0 auto;padding:0 40px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px;margin-bottom:56px;}
+  .footer-grid h4{font-size:12px;letter-spacing:3px;color:var(--accent);margin-bottom:20px;font-weight:600;}
+  .footer-grid p,.footer-grid a{font-size:13px;color:var(--gray);line-height:2.1;text-decoration:none;display:block;}
+  .footer-grid a:hover{color:var(--accent);}
+  .legal{border-top:1px solid var(--line);padding-top:32px;font-size:12px;color:var(--light);line-height:2.1;}
+  .legal .risk{color:var(--gray);margin-bottom:12px;}
+
+  @media (max-width:960px){
+    .nav{padding:0 24px;}
+    main{padding:0 24px;}
+    .footer-inner{padding:0 24px;}
+    .directions{grid-template-columns:repeat(2,1fr);}
+    .biz-list{grid-template-columns:1fr;}
+    .philosophy{grid-template-columns:1fr;}
+    .logo-wall{grid-template-columns:repeat(3,1fr);}
+    .contact-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .nav-links{gap:18px;}
+    .nav-links a{font-size:13px;}
+    .nav-links .btn{padding:8px 16px;}
+  }
+  @media (max-width:560px){
+    .directions{grid-template-columns:1fr;}
+    .logo-wall{grid-template-columns:repeat(2,1fr);}
+    .news-row{grid-template-columns:1fr;gap:8px;}
+    .mission{padding:44px 28px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="#home">Golden Rill Prime Future<span class="dot">.</span></a>
+    <nav class="nav-links">
+      <a href="#home">主页</a>
+      <a href="#about">关于我们</a>
+      <a href="#portfolio">投资组合</a>
+      <a href="#news">新闻动态</a>
+      <a class="btn" href="#contact">联系我们</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== 首屏 ===== -->
+  <section class="hero" id="home">
+    <p class="crumb">Venture Capital — AI &amp; Hard Tech</p>
+    <h1>投资人工智能<br>与硬科技领域的<span class="thin">创新力量</span></h1>
+    <p class="sub">Golden Rill Prime Future 致力于在市场达成共识之前，识别并投资具备颠覆性潜力的 AI、机器人、半导体与通信创新企业。</p>
+    <div class="cta-row">
+      <a class="cta" href="#directions">探索投资方向</a>
+      <a class="ghost" href="#about">了解我们</a>
+    </div>
+  </section>
+
+  <!-- ===== 基金方向 ===== -->
+  <section id="directions">
+    <div class="sec-head">
+      <p class="sec-no">Focus Areas</p>
+      <h2 class="sec-title">基金方向</h2>
+    </div>
+    <div class="directions">
+      <div class="direction">
+        <div class="idx">1</div>
+        <h3>具身智能与前沿硬件</h3>
+      </div>
+      <div class="direction">
+        <div class="idx">2</div>
+        <h3>AI 应用与智能代理</h3>
+      </div>
+      <div class="direction">
+        <div class="idx">3</div>
+        <h3>半导体与通信技术</h3>
+      </div>
+      <div class="direction">
+        <div class="idx">4</div>
+        <h3>下一代算力基础设施</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 核心业务 ===== -->
+  <section id="business">
+    <div class="sec-head">
+      <p class="sec-no">What We Do</p>
+      <h2 class="sec-title">核心业务</h2>
+    </div>
+    <div class="biz-list">
+      <div class="biz-card">
+        <div class="biz-no">BUSINESS 01</div>
+        <h3>风险投资</h3>
+        <p>聚焦人工智能与硬科技领域的创新企业，覆盖从早期到成长期的多阶段投资机会。</p>
+      </div>
+      <div class="biz-card">
+        <div class="biz-no">BUSINESS 02</div>
+        <h3>闭环投后赋能</h3>
+        <p>为被投企业提供数据、算力、商业化渠道与制造供应链四大核心资源，从企业成立第一天起加速成长。</p>
+      </div>
+      <div class="biz-card">
+        <div class="biz-no">BUSINESS 03</div>
+        <h3>算力生态协同</h3>
+        <p>为被投 AI 企业对接全球超大规模算力资源与基础设施，形成投资与产业的正向循环。</p>
+      </div>
+      <div class="biz-card">
+        <div class="biz-no">BUSINESS 04</div>
+        <h3>全球人才枢纽</h3>
+        <p>以新加坡为国际化发展基地，吸纳全球顶尖 AI、机器人与半导体工程人才，搭建合规的全球化发展跳板。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 关于我们 ===== -->
+  <section id="about">
+    <div class="sec-head">
+      <p class="sec-no">About Us</p>
+      <h2 class="sec-title">关于我们</h2>
+    </div>
+    <div class="about-wrap">
+      <p class="lead">Golden Rill Prime Future 是一家聚焦人工智能与硬科技领域的风险投资基金。我们致力于在市场达成共识之前，识别并投资具备颠覆性潜力的 AI、机器人、半导体与通信创新企业。</p>
+      <div class="philosophy">
+        <div class="ph-item">
+          <p class="no">PRINCIPLE 01</p>
+          <h3>人才先行</h3>
+          <p>顶尖人才是一切创新的源头，我们在创始人萌生创业想法之初就建立深度连接。</p>
+        </div>
+        <div class="ph-item">
+          <p class="no">PRINCIPLE 02</p>
+          <h3>闭环赋能</h3>
+          <p>不止于提供资金，以数据、算力、渠道、制造四大资源加速企业从 0 到 1，深度对接台湾半导体、微波射频与精密制造产业链，实现从技术验证到规模量产的快速落地。</p>
+        </div>
+        <div class="ph-item">
+          <p class="no">PRINCIPLE 03</p>
+          <h3>长期主义</h3>
+          <p>与创始人共同成长，从投资初期到成为算力生态核心租户，陪伴企业全周期发展。</p>
+        </div>
+        <div class="ph-item">
+          <p class="no">PRINCIPLE 04</p>
+          <h3>地缘中立</h3>
+          <p>以新加坡为全球枢纽，为顶尖团队提供合规、安全的全球化发展环境。</p>
+        </div>
+      </div>
+      <div class="mission">
+        <div class="rule"></div>
+        <blockquote>在市场形成共识之前挖掘关键创新，为顶尖 AI、机器人与半导体团队提供全球化发展的土壤与资源。</blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 投资组合 ===== -->
+  <section id="portfolio">
+    <div class="sec-head">
+      <p class="sec-no">Portfolio</p>
+      <h2 class="sec-title">投资组合</h2>
+      <p class="sec-desc">已投企业列表，按投资主题分类筛选。每个企业卡片包含企业 LOGO、所属行业、投资年份，点击展开企业详情介绍。</p>
+    </div>
+    <div class="logo-wall">
+      <div class="logo-cell">LOGO</div>
+      <div class="logo-cell">LOGO</div>
+      <div class="logo-cell">LOGO</div>
+      <div class="logo-cell">LOGO</div>
+      <div class="logo-cell">LOGO</div>
+    </div>
+    <p class="port-empty">企业信息待补充</p>
+  </section>
+
+  <!-- ===== 新闻动态 ===== -->
+  <section id="news">
+    <div class="sec-head">
+      <p class="sec-no">News &amp; Insights</p>
+      <h2 class="sec-title">新闻动态</h2>
+    </div>
+    <div class="tabs">
+      <span class="tab on">基金动态</span>
+      <span class="tab">行业洞察</span>
+      <span class="tab">投研观点</span>
+    </div>
+    <div class="news-list">
+      <p class="news-empty">动态内容待补充</p>
+    </div>
+  </section>
+
+  <!-- ===== 联系我们 ===== -->
+  <section id="contact">
+    <div class="sec-head">
+      <p class="sec-no">Contact Us</p>
+      <h2 class="sec-title">联系我们</h2>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-line"><span>公司名称</span>Golden Rill Prime Future</div>
+        <div class="contact-line"><span>办公地址</span>待补充</div>
+        <div class="contact-line"><span>联系电话</span>待补充</div>
+        <div class="contact-line"><span>电子邮箱</span>待补充</div>
+        <div class="contact-line"><span>官方网站</span>待补充</div>
+        <p class="sg-addr">新加坡总部 · 地址待补充</p>
+      </div>
+      <div class="map-holder">地图占位</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <h4>GOLDEN RILL PRIME FUTURE</h4>
+        <p>聚焦人工智能与硬科技的风险投资基金。</p>
+      </div>
+      <div>
+        <h4>导航</h4>
+        <a href="#home">主页</a>
+        <a href="#about">关于我们</a>
+        <a href="#portfolio">投资组合</a>
+        <a href="#news">新闻动态</a>
+        <a href="#contact">联系我们</a>
+      </div>
+      <div>
+        <h4>联系</h4>
+        <p>办公地址：待补充</p>
+        <p>电子邮箱：待补充</p>
+        <p>新加坡总部：待补充</p>
+      </div>
+    </div>
+    <div class="legal">
+      <p class="risk">风险提示：私募基金投资有风险，投资需谨慎；不承诺保本保收益，过往业绩不代表未来表现。</p>
+      <p>私募基金管理人备案编号：待补充　｜　统一社会信用代码：待补充</p>
+      <p>本网站所载信息仅供参考，不构成任何投资建议。未经书面授权，任何人不得复制、转载或以其他方式使用本网站内容。© Golden Rill Prime Future</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // 导航滚动高亮
+  const links = document.querySelectorAll('.nav-links a');
+  const secs = ['home','about','portfolio','news','contact'];
+  const obs = new IntersectionObserver((es)=>{
+    es.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(l=>l.classList.toggle('on', l.getAttribute('href')==='#'+e.target.id));
+      }
+    });
+  },{rootMargin:'-40% 0px -55% 0px'});
+  secs.forEach(id=>{const el=document.getElementById(id); if(el) obs.observe(el);});
+
+  // 新闻标签切换
+  document.querySelectorAll('.tab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+      t.classList.add('on');
+    });
+  });
+</script>
+
+</body>
+</html>

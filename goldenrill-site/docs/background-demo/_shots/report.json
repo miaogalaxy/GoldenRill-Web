@@ -1,0 +1,212 @@
+{
+  "src": "plan-e-v2.html",
+  "url": "file:///home/user/Doubao/chats/38441027922931714/grpf-website/background-demo/plan-e-v2.html",
+  "outdir": "/home/user/Doubao/chats/38441027922931714/grpf-website/background-demo/_shots",
+  "include": [
+    "lint",
+    "screenshots",
+    "structure"
+  ],
+  "shots": {
+    "desktop": {
+      "revealed": 0,
+      "screenshot": "/home/user/Doubao/chats/38441027922931714/grpf-website/background-demo/_shots/plan-e-v2_desktop.jpg",
+      "screenshotBytes": 18084,
+      "truncated": false,
+      "structure": {
+        "title": "方案 E · 行星轨道（演示页原版）",
+        "firstH1": "",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        },
+        "fullpage": {
+          "w": 1440,
+          "h": 900
+        },
+        "counts": {
+          "section": 1,
+          "h1": 0,
+          "h2": 0,
+          "img": 0,
+          "canvas": 0,
+          "svg": 1,
+          "links": 0,
+          "buttons": 0
+        }
+      },
+      "consoleErrors": [],
+      "consoleWarnings": [],
+      "horizontalOverflow": [],
+      "resourceErrors": [],
+      "faviconWarning": {
+        "present": false
+      },
+      "faviconHint": "warning · 含义：没有任何 favicon 声明——浏览器 tab、书签、历史记录里显示的是空白默认图标，产物看起来没做完。实测模型原始产物的缺失率 94%。 | 修法：用**内联 SVG data URI**，一行搞定、零额外文件：`<link rel=\"icon\" type=\"image/svg+xml\" href=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F766E'/%3E%3Ctext x='32' y='44' font-size='36' text-anchor='middle' fill='white'%3EA%3C/text%3E%3C/svg%3E\">`。图形取产物主题里的一个符号（首字母、核心图标、品牌形状），配色沿用页面主色，别用无关的通用图标。 | **三个必须注意的编码细节**：外层 href 用双引号、SVG 内部属性用单引号；`<` `>` 写成 `%3C` `%3E`；**颜色的 `#` 必须写成 `%23`**——不编码会被当成 URL fragment，图标直接不显示。想做深浅色两版就写两个 link，加 `media=\"(prefers-color-scheme: dark)\"`。 | 为什么只能用 data URI：`link href` **不在发布链路的资源收集白名单里**（那里只认 `src` 属性和 CSS `url()`），指向 `assets/` 的图标文件发布后必然 404；而且额外文件破坏单文件自包含，用户拿到一个 html 就该能用。 | 会不会被平台图标覆盖：不会。发布平台把自己的默认 favicon 注入在 `<head>` 最前面，浏览器对多个 icon link **取最后一个**，模型写在后面的那个生效。 | 豁免：(1) 产物是页面片段（没有完整 `<head>`）时不适用；(2) externalRefs 指向 CDN 域名（`lf3-static.bytednsdoc.com` 之类）时，那是**发布平台注入的**默认图标，不是你写的——迭代已发布产物时会看到，忽略即可，自己另加一个 data URI 的 link 就行（浏览器对多个 icon link 取最后一个）。"
+    },
+    "mobile": {
+      "revealed": 0,
+      "screenshot": "/home/user/Doubao/chats/38441027922931714/grpf-website/background-demo/_shots/plan-e-v2_mobile.jpg",
+      "screenshotBytes": 13587,
+      "truncated": false,
+      "structure": {
+        "title": "方案 E · 行星轨道（演示页原版）",
+        "firstH1": "",
+        "viewport": {
+          "w": 390,
+          "h": 844
+        },
+        "fullpage": {
+          "w": 390,
+          "h": 844
+        },
+        "counts": {
+          "section": 1,
+          "h1": 0,
+          "h2": 0,
+          "img": 0,
+          "canvas": 0,
+          "svg": 1,
+          "links": 0,
+          "buttons": 0
+        }
+      },
+      "consoleErrors": [],
+      "consoleWarnings": [],
+      "horizontalOverflow": [],
+      "resourceErrors": [],
+      "faviconWarning": {
+        "present": false
+      },
+      "faviconHint": "warning · 含义：没有任何 favicon 声明——浏览器 tab、书签、历史记录里显示的是空白默认图标，产物看起来没做完。实测模型原始产物的缺失率 94%。 | 修法：用**内联 SVG data URI**，一行搞定、零额外文件：`<link rel=\"icon\" type=\"image/svg+xml\" href=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F766E'/%3E%3Ctext x='32' y='44' font-size='36' text-anchor='middle' fill='white'%3EA%3C/text%3E%3C/svg%3E\">`。图形取产物主题里的一个符号（首字母、核心图标、品牌形状），配色沿用页面主色，别用无关的通用图标。 | **三个必须注意的编码细节**：外层 href 用双引号、SVG 内部属性用单引号；`<` `>` 写成 `%3C` `%3E`；**颜色的 `#` 必须写成 `%23`**——不编码会被当成 URL fragment，图标直接不显示。想做深浅色两版就写两个 link，加 `media=\"(prefers-color-scheme: dark)\"`。 | 为什么只能用 data URI：`link href` **不在发布链路的资源收集白名单里**（那里只认 `src` 属性和 CSS `url()`），指向 `assets/` 的图标文件发布后必然 404；而且额外文件破坏单文件自包含，用户拿到一个 html 就该能用。 | 会不会被平台图标覆盖：不会。发布平台把自己的默认 favicon 注入在 `<head>` 最前面，浏览器对多个 icon link **取最后一个**，模型写在后面的那个生效。 | 豁免：(1) 产物是页面片段（没有完整 `<head>`）时不适用；(2) externalRefs 指向 CDN 域名（`lf3-static.bytednsdoc.com` 之类）时，那是**发布平台注入的**默认图标，不是你写的——迭代已发布产物时会看到，忽略即可，自己另加一个 data URI 的 link 就行（浏览器对多个 icon link 取最后一个）。"
+    }
+  },
+  "engine": "playwright",
+  "chromiumExec": "/opt/vm/preinstall/ms-playwright/chromium-1169/chrome-linux/chrome",
+  "responsiveChartIssues": [
+    {
+      "id": "",
+      "tag": "svg",
+      "cls": "",
+      "desktop": {
+        "w": 340,
+        "h": 200
+      },
+      "mobile": {
+        "w": 156,
+        "h": 92
+      },
+      "mobileViewport": 390,
+      "widthVsViewport": 0.4
+    }
+  ],
+  "responsiveChartIssuesHint": "含义：图表容器在桌面正常（>=300px），移动端却没占到视口宽度的 65%——说明它没跟着媒体查询堆叠成单栏。widthVsViewport 是移动端图表宽度 / 移动视口宽度。典型根因：容器用了 width:X% + display:inline-block 双栏、或固定 px 宽，@media(max-width:...) 里漏写单栏堆叠。echarts 被压到这种宽度，grid.left/right 已吃掉全部绘图区，肉眼看是「空的 / 一根线 / 坐标轴叠一起」。 | 修法：在移动断点里给父容器补 grid-template-columns:1fr 或 display:block，让子图表单栏堆叠、拿到视口全宽。 | 豁免：(1) 故意做的 side-by-side sparkline / dual-panel 迷你图——对照移动截图确认视觉没坏后忽略；(2) 移动端图表放在侧栏 / drawer 内本来就窄。",
+  "elapsedSec": 3.98,
+  "schemaVersion": 2,
+  "status": "fail",
+  "engineInfo": {
+    "name": "playwright",
+    "degraded": false,
+    "degradedReasons": []
+  },
+  "input": {
+    "original": "plan-e-v2.html",
+    "resolvedPath": "/home/user/Doubao/chats/38441027922931714/grpf-website/background-demo/plan-e-v2.html",
+    "baseUrl": "file:///home/user/Doubao/chats/38441027922931714/grpf-website/background-demo/plan-e-v2.html",
+    "protocol": "file",
+    "cwd": "/home/user/Doubao/chats/38441027922931714/grpf-website/background-demo",
+    "mediaMode": {
+      "reducedMotion": true
+    }
+  },
+  "artifacts": {
+    "screenshots": [
+      {
+        "viewport": "desktop",
+        "path": "/home/user/Doubao/chats/38441027922931714/grpf-website/background-demo/_shots/plan-e-v2_desktop.jpg",
+        "size": 18084,
+        "visualCoverage": {
+          "complete": true,
+          "reason": null
+        }
+      },
+      {
+        "viewport": "mobile",
+        "path": "/home/user/Doubao/chats/38441027922931714/grpf-website/background-demo/_shots/plan-e-v2_mobile.jpg",
+        "size": 13587,
+        "visualCoverage": {
+          "complete": true,
+          "reason": null
+        }
+      }
+    ]
+  },
+  "summary": {
+    "blocker": 0,
+    "error": 1,
+    "warning": 2,
+    "info": 0
+  },
+  "findings": [
+    {
+      "ruleId": "faviconWarning",
+      "severity": "warning",
+      "kind": "metadata",
+      "viewport": "desktop",
+      "selector": null,
+      "evidence": {
+        "present": false
+      },
+      "dedupeKey": "faviconWarning|desktop||0"
+    },
+    {
+      "ruleId": "faviconWarning",
+      "severity": "warning",
+      "kind": "metadata",
+      "viewport": "mobile",
+      "selector": null,
+      "evidence": {
+        "present": false
+      },
+      "dedupeKey": "faviconWarning|mobile||0"
+    },
+    {
+      "ruleId": "responsiveChartIssues",
+      "severity": "error",
+      "kind": "responsive",
+      "viewport": null,
+      "selector": "svg",
+      "evidence": {
+        "id": "",
+        "tag": "svg",
+        "cls": "",
+        "desktop": {
+          "w": 340,
+          "h": 200
+        },
+        "mobile": {
+          "w": 156,
+          "h": 92
+        },
+        "mobileViewport": 390,
+        "widthVsViewport": 0.4
+      },
+      "dedupeKey": "responsiveChartIssues|top|svg|0"
+    }
+  ],
+  "prioritizedActions": [
+    {
+      "ruleId": "responsiveChartIssues",
+      "severity": "error",
+      "viewport": null,
+      "selector": "svg"
+    },
+    {
+      "ruleId": "faviconWarning",
+      "severity": "warning",
+      "viewport": "desktop",
+      "selector": null
+    }
+  ],
+  "reportPath": "/home/user/Doubao/chats/38441027922931714/grpf-website/background-demo/_shots/report.json"
+}

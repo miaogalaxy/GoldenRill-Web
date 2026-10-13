@@ -1,0 +1,6 @@
+<svg width="120" height="140" viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
+  <!-- K 字母，用 currentColor 跟随主题 -->
+  <path d="M20 15 L48 15 L48 55 L82 15 L108 15 L68 65 L112 125 L84 125 L58 80 L48 92 L48 125 L20 125 Z" fill="currentColor"/>
+  <!-- 右上角蓝色圆点 -->
+  <circle cx="108" cy="28" r="14" fill="#3B9EFF"/>
+</svg>

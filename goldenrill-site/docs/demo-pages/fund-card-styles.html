@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>基金产品卡片样式 - 选择</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:#0a0a0a;color:#fff;font-family:'Noto Serif SC',serif;padding:60px 40px;}
+  h1{text-align:center;font-size:28px;margin-bottom:12px;letter-spacing:4px;}
+  .sub{text-align:center;color:#888;margin-bottom:60px;font-size:14px;letter-spacing:2px;}
+  .section{margin-bottom:80px;}
+  .section-title{font-size:16px;color:#cbb89d;margin-bottom:24px;letter-spacing:3px;padding-left:16px;border-left:3px solid #cbb89d;}
+  .demo-row{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+  @media(max-width:900px){.demo-row{grid-template-columns:1fr;}}
+
+  /* ===== 样式1：玻璃拟态 + 光晕 ===== */
+  .s1-card{
+    position:relative;
+    padding:48px 36px;
+    border-radius:24px;
+    background:rgba(255,255,255,.03);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.08);
+    overflow:hidden;
+    transition:all .6s;
+  }
+  .s1-card::before{
+    content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+    background:conic-gradient(from 0deg,transparent 0%,rgba(203,184,157,.15) 10%,transparent 20%);
+    animation:rotate 6s linear infinite;
+  }
+  @keyframes rotate{to{transform:rotate(360deg);}}
+  .s1-card::after{
+    content:'';position:absolute;inset:1px;border-radius:23px;background:#111;
+  }
+  .s1-inner{position:relative;z-index:1;text-align:center;}
+  .s1-logo{height:50px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;}
+  .s1-logo svg{height:50px;fill:#fff;}
+  .s1-name{font-size:14px;letter-spacing:3px;color:#cbb89d;margin-bottom:16px;text-transform:uppercase;}
+  .s1-desc{font-size:13px;color:#aaa;line-height:2;}
+
+  /* ===== 样式2：渐变边框 + 光标跟随 ===== */
+  .s2-card{
+    position:relative;
+    padding:48px 36px;
+    border-radius:20px;
+    background:#111;
+    border:1px solid rgba(203,184,157,.2);
+    transition:all .5s;
+    overflow:hidden;
+  }
+  .s2-card:hover{border-color:rgba(203,184,157,.6);box-shadow:0 0 40px rgba(203,184,157,.15);}
+  .s2-glow{
+    position:absolute;width:300px;height:300px;border-radius:50%;
+    background:radial-gradient(circle,rgba(203,184,157,.15),transparent 70%);
+    pointer-events:none;opacity:0;transition:opacity .4s;
+  }
+  .s2-card:hover .s2-glow{opacity:1;}
+  .s2-inner{position:relative;text-align:center;}
+  .s2-logo{height:50px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;}
+  .s2-logo svg{height:50px;fill:#fff;}
+  .s2-name{font-size:14px;letter-spacing:3px;color:#cbb89d;margin-bottom:16px;}
+  .s2-desc{font-size:13px;color:#aaa;line-height:2;}
+
+  /* ===== 样式3：左侧金色竖线 + 序号 ===== */
+  .s3-card{
+    position:relative;
+    padding:48px 36px 48px 56px;
+    border-radius:0 20px 20px 0;
+    background:#111;
+    border:1px solid rgba(255,255,255,.06);
+    overflow:hidden;
+    transition:all .5s;
+  }
+  .s3-card::before{
+    content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+    background:linear-gradient(180deg,#cbb89d,transparent);
+  }
+  .s3-card:hover{background:#161616;transform:translateX(6px);}
+  .s3-num{position:absolute;top:24px;right:28px;font-size:48px;font-weight:900;color:rgba(203,184,157,.1);line-height:1;}
+  .s3-logo{height:44px;margin-bottom:20px;}
+  .s3-logo svg{height:44px;fill:#fff;}
+  .s3-name{font-size:14px;letter-spacing:3px;color:#cbb89d;margin-bottom:16px;}
+  .s3-desc{font-size:13px;color:#aaa;line-height:2;}
+
+  /* ===== 样式4：上下分割线 + hover展开 ===== */
+  .s4-card{
+    position:relative;
+    padding:56px 36px;
+    background:#111;
+    text-align:center;
+    transition:all .5s;
+    overflow:hidden;
+  }
+  .s4-card::before,.s4-card::after{
+    content:'';position:absolute;left:50%;transform:translateX(-50%);
+    width:0;height:1px;background:#cbb89d;transition:width .6s;
+  }
+  .s4-card::before{top:0;}
+  .s4-card::after{bottom:0;}
+  .s4-card:hover::before,.s4-card:hover::after{width:80%;}
+  .s4-card:hover{padding:64px 36px;}
+  .s4-logo{height:50px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;}
+  .s4-logo svg{height:50px;fill:#fff;}
+  .s4-name{font-size:14px;letter-spacing:4px;color:#cbb89d;margin-bottom:16px;}
+  .s4-desc{font-size:13px;color:#aaa;line-height:2;}
+
+  /* ===== 样式5：3D倾斜 + 粒子感 ===== */
+  .s5-card{
+    position:relative;
+    padding:48px 36px;
+    border-radius:20px;
+    background:linear-gradient(145deg,#161616,#0d0d0d);
+    border:1px solid rgba(203,184,157,.15);
+    transition:all .4s;
+    transform-style:preserve-3d;
+  }
+  .s5-card:hover{
+    transform:perspective(1000px) rotateY(-3deg) rotateX(2deg);
+    box-shadow:0 20px 60px rgba(0,0,0,.5);
+    border-color:rgba(203,184,157,.4);
+  }
+  .s5-dots{
+    position:absolute;top:20px;right:24px;display:flex;gap:6px;
+  }
+  .s5-dots span{width:6px;height:6px;border-radius:50%;background:#cbb89d;opacity:.5;}
+  .s5-dots span:nth-child(2){opacity:.3;}
+  .s5-dots span:nth-child(3){opacity:.15;}
+  .s5-logo{height:50px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;}
+  .s5-logo svg{height:50px;fill:#fff;}
+  .s5-name{font-size:14px;letter-spacing:3px;color:#cbb89d;margin-bottom:16px;}
+  .s5-desc{font-size:13px;color:#aaa;line-height:2;}
+
+  /* 通用logo svg */
+  .logo-placeholder{
+    font-size:24px;font-weight:700;letter-spacing:2px;color:#fff;
+  }
+</style>
+</head>
+<body>
+
+<h1>基金产品卡片样式</h1>
+<p class="sub">hover 查看效果 · 选择你喜欢的风格</p>
+
+<!-- 样式1 -->
+<div class="section">
+  <div class="section-title">样式 A · 玻璃拟态 + 旋转光晕</div>
+  <div class="demo-row">
+    <div class="s1-card"><div class="s1-inner">
+      <div class="s1-logo"><span class="logo-placeholder">GR</span></div>
+      <div class="s1-name">Golden Rill</div>
+      <div class="s1-desc">专注于中国市场的美元基金，核心投资方向覆盖 AI 应用与硬件、AI4S 以及具身智能等前沿科技领域。</div>
+    </div></div>
+    <div class="s1-card"><div class="s1-inner">
+      <div class="s1-logo"><span class="logo-placeholder">RA</span></div>
+      <div class="s1-name">ReemAsia</div>
+      <div class="s1-desc">面向海外市场的美元基金，投资主题聚焦于半导体与通信技术，以及下一代算力基础设施。</div>
+    </div></div>
+  </div>
+</div>
+
+<!-- 样式2 -->
+<div class="section">
+  <div class="section-title">样式 B · 光标跟随光晕 + 金色边框</div>
+  <div class="demo-row">
+    <div class="s2-card" onmousemove="followGlow(event,this)">
+      <div class="s2-glow"></div>
+      <div class="s2-inner">
+        <div class="s2-logo"><span class="logo-placeholder">GR</span></div>
+        <div class="s2-name">Golden Rill</div>
+        <div class="s2-desc">专注于中国市场的美元基金，核心投资方向覆盖 AI 应用与硬件、AI4S 以及具身智能等前沿科技领域。</div>
+      </div>
+    </div>
+    <div class="s2-card" onmousemove="followGlow(event,this)">
+      <div class="s2-glow"></div>
+      <div class="s2-inner">
+        <div class="s2-logo"><span class="logo-placeholder">RA</span></div>
+        <div class="s2-name">ReemAsia</div>
+        <div class="s2-desc">面向海外市场的美元基金，投资主题聚焦于半导体与通信技术，以及下一代算力基础设施。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 样式3 -->
+<div class="section">
+  <div class="section-title">样式 C · 左侧金色竖线 + 大号序号</div>
+  <div class="demo-row">
+    <div class="s3-card">
+      <div class="s3-num">01</div>
+      <div class="s3-logo"><span class="logo-placeholder">GR</span></div>
+      <div class="s3-name">Golden Rill</div>
+      <div class="s3-desc">专注于中国市场的美元基金，核心投资方向覆盖 AI 应用与硬件、AI4S 以及具身智能等前沿科技领域。</div>
+    </div>
+    <div class="s3-card">
+      <div class="s3-num">02</div>
+      <div class="s3-logo"><span class="logo-placeholder">RA</span></div>
+      <div class="s3-name">ReemAsia</div>
+      <div class="s3-desc">面向海外市场的美元基金，投资主题聚焦于半导体与通信技术，以及下一代算力基础设施。</div>
+    </div>
+  </div>
+</div>
+
+<!-- 样式4 -->
+<div class="section">
+  <div class="section-title">样式 D · 上下金线 hover展开</div>
+  <div class="demo-row">
+    <div class="s4-card">
+      <div class="s4-logo"><span class="logo-placeholder">GR</span></div>
+      <div class="s4-name">Golden Rill</div>
+      <div class="s4-desc">专注于中国市场的美元基金，核心投资方向覆盖 AI 应用与硬件、AI4S 以及具身智能等前沿科技领域。</div>
+    </div>
+    <div class="s4-card">
+      <div class="s4-logo"><span class="logo-placeholder">RA</span></div>
+      <div class="s4-name">ReemAsia</div>
+      <div class="s4-desc">面向海外市场的美元基金，投资主题聚焦于半导体与通信技术，以及下一代算力基础设施。</div>
+    </div>
+  </div>
+</div>
+
+<!-- 样式5 -->
+<div class="section">
+  <div class="section-title">样式 E · 3D倾斜 + 金色粒子点</div>
+  <div class="demo-row">
+    <div class="s5-card">
+      <div class="s5-dots"><span></span><span></span><span></span></div>
+      <div class="s5-logo"><span class="logo-placeholder">GR</span></div>
+      <div class="s5-name">Golden Rill</div>
+      <div class="s5-desc">专注于中国市场的美元基金，核心投资方向覆盖 AI 应用与硬件、AI4S 以及具身智能等前沿科技领域。</div>
+    </div>
+    <div class="s5-card">
+      <div class="s5-dots"><span></span><span></span><span></span></div>
+      <div class="s5-logo"><span class="logo-placeholder">RA</span></div>
+      <div class="s5-name">ReemAsia</div>
+      <div class="s5-desc">面向海外市场的美元基金，投资主题聚焦于半导体与通信技术，以及下一代算力基础设施。</div>
+    </div>
+  </div>
+</div>
+
+<script>
+function followGlow(e,el){
+  const glow=el.querySelector('.s2-glow');
+  const r=el.getBoundingClientRect();
+  glow.style.left=(e.clientX-r.left-150)+'px';
+  glow.style.top=(e.clientY-r.top-150)+'px';
+}
+</script>
+
+</body>
+</html>
